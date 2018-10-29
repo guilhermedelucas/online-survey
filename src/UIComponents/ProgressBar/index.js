@@ -4,7 +4,7 @@ import Filler from './Filler';
 
 const ProgressBar = ({ percentage }) => {
 	return (
-		<div className="">
+		<div className="" style={{ position: 'relative', height: '20px', width: '350px', borderRadius: '50px', border: '1px solid #333'}}>
 			<Filler percentage={percentage}/>
 		</div>
 	)

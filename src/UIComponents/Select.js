@@ -11,7 +11,7 @@ const Select = ({ label, onChange, placeholder, value, options, ...props }) => {
 				onChange={e => onChange(e.target.value)}
 				{...props}
 			>
-				{ options.map(({id, label}) => <option key={id}>{label}</option>)}
+				{ options.map(({id, name}) => <option value={id}>{name}</option>)}
 			</select>
 		</Label>
 	);
