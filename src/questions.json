@@ -1,0 +1,38 @@
+[{
+	"question": "What franchise would you rather play a game from?",
+	"type": "inputText",
+	"options": [],
+	"answer": ""
+}, {
+	"question": "Which console would you prefer to play with friends?",
+	"type": "select",
+	"options": [{
+			"id": "Microsoft",
+			"name": "X-Box"
+		},
+		{
+			"id": "Nintendo",
+			"name": "Nintendo 64"
+		},
+		{
+			"id": "Sony",
+			"name": "Playstation 1"
+		}
+	]
+}, {
+	"question": "Which of these racing franchises would you prefer to play a game from?",
+	"type": "radioGroup",
+	"options": [{
+			"id": "Microsoft",
+			"name": "Forza"
+		},
+		{
+			"id": "Nintendo",
+			"name": "Mario Kart"
+		},
+		{
+			"id": "Sony",
+			"name": "Gran Turismo"
+		}
+	]
+}]
