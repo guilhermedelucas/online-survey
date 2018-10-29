@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Label } from './';
+import { Label, Radio } from './';
 
 const RadioGroup = ({ label, onChange, value, options, ...props }) => {
 	return (
@@ -8,10 +8,10 @@ const RadioGroup = ({ label, onChange, value, options, ...props }) => {
 		{
 			options.map(({id, name}) => (
 				<Label key={id} label={name} type="inline">
-					<input
-						type="radio"
+					<Radio
+						value={value}
 						checked={value === id}
-						onClick={e => onChange(id)}
+						onChange={e => onChange(id)}
 						{...props}
 					/>
 				</Label>

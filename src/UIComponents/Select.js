@@ -11,7 +11,8 @@ const Select = ({ label, onChange, placeholder, value, options, ...props }) => {
 				onChange={e => onChange(e.target.value)}
 				{...props}
 			>
-				{ options.map(({id, name}) => <option value={id}>{name}</option>)}
+				{ <option disabled value="">Select an option</option> }
+				{ options.map(({id, name}) => <option key={id} value={id}>{name}</option>)}
 			</select>
 		</Label>
 	);

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './index.css';
 import questions from './questions.json';
 import { ProgressBar, InputType, Button } from './UIComponents';
 
 class App extends Component {
 	constructor(props) {
 		super(props)
+
 		this.state = {
-			counter: 0,
-			questions,
-			answer: '',
+			counter: localStorage.getItem('counter') || 0,
+			questions: JSON.parse(localStorage.getItem('questions')) || questions,
+			answer: JSON.parse(localStorage.getItem('answer')) || '',
 			answers: []
 		};
 		this.handleAnswer = this.handleAnswer.bind(this);
@@ -19,7 +20,7 @@ class App extends Component {
 	}
 
 	handleAnswer(answer) {
-		this.setState({ answer })
+		this.setState({ answer }, () => localStorage.setItem('answer', JSON.stringify(this.state.answer)))
 	}
 
 	handleBackButton() {
@@ -28,6 +29,9 @@ class App extends Component {
 			questions: questions.map((question, index) => index === counter ? {...question, answer } : question ),
 			answer: questions[counter - 1].answer,
 			counter: counter - 1
+		}, () => {
+			localStorage.setItem('counter', this.state.counter);
+			localStorage.setItem('questions', JSON.stringify(this.state.questions));
 		})
 	}
 
@@ -35,19 +39,19 @@ class App extends Component {
 		const { questions, answer, counter } = this.state;
 		this.setState({
 			questions: questions.map((question, index) => index === counter ? {...question, answer } : question ),
-			answer: questions[counter].answer,
+			answer: questions[counter + 1].answer,
 			counter: counter + 1
+		}, () => {
+			localStorage.setItem('counter', this.state.counter);
+			localStorage.setItem('questions', JSON.stringify(this.state.questions));
 		})
 	}
 
 	render() {
 		const { questions, answers, answer, counter } = this.state;
 		const displayQuestion = questions[counter];
-
-		console.log(questions);
-
 		return (
-			<div className="App" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+			<div className="App flex flex-col align-center">
 				<ProgressBar percentage={(counter/questions.length) * 100}/>
 				<Title counter={counter} questions={questions} />
 				{ counter === questions.length ? <Summary questions={questions} answers={answers} /> :
@@ -84,7 +88,7 @@ const Summary = ({ questions }) => (
 	<React.Fragment>
 		{
 			questions.map(({question, answer, options}, index) => (
-				<div>
+				<div key={`summary+${index}`}>
 					<p>{question}</p>
 					<p>{!!options.length ? options.find(option => option.id === answer).name : answer}</p>
 				</div>
@@ -95,8 +99,8 @@ const Summary = ({ questions }) => (
 
 const Title = ({ counter, questions }) => {
 	if (counter === questions.length) {
-		return <h1>Questionaire summary</h1>
+		return <h2>Questionaire summary</h2>
 	}
-	return <h1>{questions[counter].question}</h1>
+	return <h2>{questions[counter].question}</h2>
 
 }

@@ -9,7 +9,7 @@ const Radio = ({ label, onChange, checked, value, ...props }) => {
 				type="radio"
 				value={value}
 				checked={checked}
-				onClick={e => onChange(e.target.checked)}
+				onChange={e => onChange(e.target.checked)}
 				{...props}
 			/>
 		</Label>

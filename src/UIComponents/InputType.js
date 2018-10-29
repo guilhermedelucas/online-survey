@@ -37,7 +37,7 @@ const InputType = ({ type, value, label, onChange, options, ...props }) => {
 export default InputType;
 
 InputType.propTypes = {
-	type: PropTypes.oneOf(['inputText', 'radioGroup, select', '']),
+	type: PropTypes.oneOf(['inputText', 'radioGroup', 'select', '']),
 	value: PropTypes.string,
 	label: PropTypes.string,
 	onChange: PropTypes.func,

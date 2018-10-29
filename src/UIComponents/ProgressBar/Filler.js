@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './progress-bar.css';
 
 const Filler = ({ percentage }) => {
 	return (
-		<div className="" style={{ width: `${percentage}%`, background: 'rgb(72, 76, 139)', height: '100%', borderRadius: 'inherit' }} />
+		<div className="filler" style={{ width: `${percentage}%` }} />
 	)
 };
 
