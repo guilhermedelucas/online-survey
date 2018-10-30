@@ -21,6 +21,26 @@ code {
 	flex-direction: column;
 }
 
+.flex-row {
+	flex-direction: row;
+}
+
 .align-center {
 	align-items: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.justify-around {
+	justify-content: space-around;
+}
+
+.w-full {
+	width: 100%;
+}
+
+.w-screen {
+	width: 100wv;
 }

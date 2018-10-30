@@ -7,16 +7,28 @@ import { ProgressBar, InputType, Button } from './UIComponents';
 class App extends Component {
 	constructor(props) {
 		super(props)
-
 		this.state = {
-			counter: localStorage.getItem('counter') || 0,
-			questions: JSON.parse(localStorage.getItem('questions')) || questions,
-			answer: JSON.parse(localStorage.getItem('answer')) || '',
+			counter: this.getLocalStorageItem('counter') ? Number(this.getLocalStorageItem('counter')) : 0,
+			questions: this.getLocalStorageItem('questions') ? this.getLocalStorageItem('questions') : questions,
+			answer: this.getLocalStorageItem('answer') ? this.getLocalStorageItem('answer') : '',
 			answers: []
 		};
 		this.handleAnswer = this.handleAnswer.bind(this);
+		this.setLocalStorage = this.setLocalStorage.bind(this);
 		this.handleBackButton = this.handleBackButton.bind(this);
 		this.handleNextButton = this.handleNextButton.bind(this);
+	}
+
+	getLocalStorageItem(key) {
+		let item = localStorage.getItem(key);
+		if (typeof item === 'string') {
+			return JSON.parse(item)
+		}
+		return item
+	}
+
+	setLocalStorage(key, item) {
+		localStorage.setItem(key, item);
 	}
 
 	handleAnswer(answer) {
@@ -25,13 +37,15 @@ class App extends Component {
 
 	handleBackButton() {
 		const { questions, answer, counter } = this.state;
+		console.log(questions, answer, counter);
 		this.setState({
 			questions: questions.map((question, index) => index === counter ? {...question, answer } : question ),
 			answer: questions[counter - 1].answer,
 			counter: counter - 1
 		}, () => {
-			localStorage.setItem('counter', this.state.counter);
-			localStorage.setItem('questions', JSON.stringify(this.state.questions));
+			this.setLocalStorage('counter', this.state.counter);
+			this.setLocalStorage('answer', JSON.stringify(this.state.answer));
+			this.setLocalStorage('questions', JSON.stringify(this.state.questions));
 		})
 	}
 
@@ -39,45 +53,51 @@ class App extends Component {
 		const { questions, answer, counter } = this.state;
 		this.setState({
 			questions: questions.map((question, index) => index === counter ? {...question, answer } : question ),
-			answer: questions[counter + 1].answer,
+			answer: questions[counter + 1] ? questions[counter + 1].answer : '',
 			counter: counter + 1
 		}, () => {
-			localStorage.setItem('counter', this.state.counter);
-			localStorage.setItem('questions', JSON.stringify(this.state.questions));
+			this.setLocalStorage('counter', this.state.counter);
+			this.setLocalStorage('answer', JSON.stringify(this.state.answer));
+			this.setLocalStorage('questions', JSON.stringify(this.state.questions));
 		})
 	}
 
 	render() {
 		const { questions, answers, answer, counter } = this.state;
 		const displayQuestion = questions[counter];
+		console.log(counter);
 		return (
-			<div className="App flex flex-col align-center">
-				<ProgressBar percentage={(counter/questions.length) * 100}/>
-				<Title counter={counter} questions={questions} />
-				{ counter === questions.length ? <Summary questions={questions} answers={answers} /> :
-				<InputType
-					type={displayQuestion.type}
-					value={answer}
-					options={displayQuestion.options}
-					onChange={this.handleAnswer}
-				/>
-				}
-				{ counter > 0 &&
-					<Button
-						type="secondary"
-						label="Back"
-						onClick={this.handleBackButton}
-					/>
-				}
-				{
-					counter < questions.length &&
-					<Button
-						type="primary"
-						label={counter === (questions.length - 1) ? 'Show summary' : 'Next'}
-						onClick={this.handleNextButton}
-						disabled={!answer}
-					/>
-				}
+			<div className="App" style={{ height: '100vh', justifyContent: 'center', backgroundColor: 'rgb(71, 71, 71)' }} className="flex flex-col">
+				<div className="flex flex-col align-center justify-around" style={{ backgroundColor: 'white', borderRadius: '10px', padding: '4rem', border: '1px solid black', width: '80%', height: '50%', textAlign: 'center', margin: 'auto', overflowY: 'auto'}}>
+					<ProgressBar percentage={(counter/questions.length) * 100}/>
+					<Title counter={counter} questions={questions} />
+					{ counter === questions.length ? <Summary questions={questions} answers={answers} /> :
+						<InputType
+							type={displayQuestion.type}
+							value={answer}
+							options={displayQuestion.options}
+							onChange={this.handleAnswer}
+						/>
+					}
+					<div className='flex flex-row justify-around w-full'>
+						{ counter > 0 &&
+							<Button
+								type="secondary"
+								label="Back"
+								onClick={this.handleBackButton}
+							/>
+						}
+						{
+							counter < questions.length &&
+							<Button
+								type="primary"
+								label={counter === (questions.length - 1) ? 'Show summary' : 'Next'}
+								onClick={this.handleNextButton}
+								disabled={!answer}
+							/>
+						}
+					</div>
+				</div>
 			</div>
 		);
 	}
