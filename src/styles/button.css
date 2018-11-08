@@ -1,0 +1,36 @@
+@import 'colors.css';
+
+button {
+	padding: 1rem 2rem;
+	border-radius: 7px;
+	transition: all .5s;
+	margin: 1rem 2rem;
+	background-color: var(--white);
+	color: var(--dark-gray);
+	font-size: 14px;
+
+	&:hover {
+		cursor: pointer;
+		background-color: var(--dark-gray);
+		color: var(--white);
+		transition: all .5s;
+	}
+	&:disabled {
+		background-color: var(white);
+		color: var(--light-gray);
+		cursor: not-allowed;
+		opacity: .5;
+	}
+	&:focus {
+		outline: none;
+	}
+	&[type="primary"] {
+		background-color: var(--primary);
+		color: var(--white);
+		&:hover {
+			background-color: var(--white);
+			color: var(--primary);
+			border: 1px var(--primary) solid;
+		}
+	}
+}

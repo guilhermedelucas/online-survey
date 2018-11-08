@@ -6,6 +6,7 @@ const Select = ({ label, onChange, placeholder, value, options, ...props }) => {
 	return (
 		<Label label={label}>
 			<select
+				className="question-select w-full"
 				value={value}
 				placeholder={placeholder}
 				onChange={e => onChange(e.target.value)}

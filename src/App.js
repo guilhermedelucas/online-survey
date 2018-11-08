@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './index.css';
 import questions from './questions.json';
 import { ProgressBar, InputType, Button } from './UIComponents';
 
@@ -14,7 +13,6 @@ class App extends Component {
 			answers: []
 		};
 		this.handleAnswer = this.handleAnswer.bind(this);
-		this.setLocalStorage = this.setLocalStorage.bind(this);
 		this.handleBackButton = this.handleBackButton.bind(this);
 		this.handleNextButton = this.handleNextButton.bind(this);
 	}
@@ -65,10 +63,9 @@ class App extends Component {
 	render() {
 		const { questions, answers, answer, counter } = this.state;
 		const displayQuestion = questions[counter];
-		console.log(counter);
 		return (
-			<div className="App" style={{ height: '100vh', justifyContent: 'center', backgroundColor: 'rgb(71, 71, 71)' }} className="flex flex-col">
-				<div className="flex flex-col align-center justify-around" style={{ backgroundColor: 'white', borderRadius: '10px', padding: '4rem', border: '1px solid black', width: '80%', height: '50%', textAlign: 'center', margin: 'auto', overflowY: 'auto'}}>
+			<div style={{ backgroundColor: 'rgb(71, 71, 71)' }} className="flex flex-col h-screen justify-center">
+				<div className="flex flex-col align-center justify-around" style={{ backgroundColor: 'white', borderRadius: '10px', padding: '4rem', border: '1px solid black', width: '80%', height: '80%', textAlign: 'center', margin: 'auto', overflowY: 'auto'}}>
 					<ProgressBar percentage={(counter/questions.length) * 100}/>
 					<Title counter={counter} questions={questions} />
 					{ counter === questions.length ? <Summary questions={questions} answers={answers} /> :

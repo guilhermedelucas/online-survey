@@ -1,0 +1,82 @@
+@import 'colors.css';
+@import 'button.css';
+@import 'progress-bar.css';
+@import 'input.css';
+@import 'variables';
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+	"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+	sans-serif;
+ 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+p {
+	font-size: 14px;
+	margin: 0;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+	monospace;
+}
+
+.flex {
+	display: flex;
+	color: gray(50);
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
+.flex-row {
+	flex-direction: row;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+.justify-around {
+	justify-content: space-around;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.w-full {
+	width: 100%;
+}
+
+.w-screen {
+	width: 100vw;
+}
+
+.h-full {
+	height: 100%
+}
+
+.h-screen {
+	height: 100vh
+}
+
+.nowrap {
+	white-space: nowrap;
+}

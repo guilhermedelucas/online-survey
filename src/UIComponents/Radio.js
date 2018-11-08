@@ -2,21 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Label } from './';
 
-const Radio = ({ label, onChange, checked, value, ...props }) => {
-	return (
-		<Label label={label} type="inline">
-			<input
-				type="radio"
-				value={value}
-				checked={checked}
-				onChange={e => onChange(e.target.checked)}
-				{...props}
-			/>
-		</Label>
-	);
-};
+export default class Radio extends React.Component {
+	constructor(props) {
+		super(props);
+		this.radioRef = React.createRef();
+		this.handleClickBox = this.handleClickBox.bind(this);
+	}
 
-export default Radio;
+	handleClickBox(e) {
+		this.radioRef.current.click()
+	}
+
+	render() {
+		const { label, onChange, checked, value } = this.props;
+		return (
+			<div className="question-radio-box" onClick={this.handleClickBox}>
+				<input
+					ref={this.radioRef}
+					className="question-radio"
+					type="radio"
+					value={value}
+					checked={checked}
+					onChange={e => onChange(e.target.checked)}
+					{...this.props}
+				/>
+				<p>{label}</p>
+			</div>
+		);
+	}
+};
 
 Radio.defaultProps = {
 	label: '',

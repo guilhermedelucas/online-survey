@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Label = ({ type, label, children, ...props }) => {
-	return <label {...props}>{children}{label}</label>;
+	return <label className="flex flex-row w-full"{...props}>{children}{label}</label>;
 };
 
 export default Label;

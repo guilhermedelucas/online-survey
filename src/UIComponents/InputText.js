@@ -6,6 +6,8 @@ const TextInput = ({ label, onChange, value, ...props }) => {
 	return (
 		<Label label={label}>
 			<input
+				type="text"
+				className="question-text"
 				value={value}
 				onChange={e => onChange(e.target.value)}
 				{...props}

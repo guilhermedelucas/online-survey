@@ -4,20 +4,19 @@ import { Label, Radio } from './';
 
 const RadioGroup = ({ label, onChange, value, options, ...props }) => {
 	return (
-		<React.Fragment>
+		<div className="question-radio-group">
 		{
 			options.map(({id, name}) => (
-				<Label key={id} label={name} type="inline">
-					<Radio
-						value={value}
-						checked={value === id}
-						onChange={e => onChange(id)}
-						{...props}
-					/>
-				</Label>
+				<Radio
+					label={name}
+					value={value}
+					checked={value === id}
+					onChange={e => onChange(id)}
+					{...props}
+				/>
 			))
 		}
-		</React.Fragment>
+	</div>
 	);
 };
 

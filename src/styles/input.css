@@ -1,0 +1,105 @@
+@import 'variables.css';
+
+:root {}
+
+label {
+	font-size: 1em;
+}
+
+input {
+	font-size: 1em;
+	display: flex;
+	border-radius: 10px;
+	border: 1px var(--primary) solid;
+	padding: 0px;
+	text-align: center;
+	&:focus {
+		outline: none;
+	}
+	&[type="text"] {
+		width: 100%;
+		line-height: 20px;
+		padding: 1em 2em;
+		border: none;
+		border-radius: 0px;
+		border-bottom: 1px solid var(--primary);
+	}
+	&[type="radio"] {
+		appearance: none;
+		&:after {
+			width: 15px;
+			height: 15px;
+			border-radius: 15px;
+			position: relative;
+			content: '';
+			display: inline-block;
+			visibility: visible;
+			border: 2px solid white;
+			transition: background-color .1s;
+		}
+		&:checked {
+			&:after {
+				background-color: var(--primary);
+				width: 15px;
+				height: 15px;
+				border-radius: 15px;
+				position: relative;
+				content: '';
+				display: inline-block;
+				visibility: visible;
+				border: 2px solid white;
+				transition: background-color .1s;
+		   }
+		}
+	}
+}
+
+.question-radio {
+	margin: 0px auto;
+}
+
+.question-radio-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	text-align: center;
+	height: 90px;
+	width: 200px;
+	margin: 1em;
+	border-radius: 10px;
+	border: 1px var(--primary) solid;
+	cursor: pointer;
+	&:hover {
+		box-shadow: 2px 2px 42px -13px rgba(0,0,0,0.75);
+	}
+}
+
+.question-radio-group {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: center;
+	flex-wrap: wrap;
+
+}
+
+.question-select {
+	font-size: 1em;
+	height: 40px;
+	border: 1px var(--primary) solid;
+	padding: .5rem 1rem;
+	border-radius: 2px;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+	color: #555;
+	margin: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	&:focus {
+		outline: none;
+	}
+}
+
+.question-radio {
+
+}

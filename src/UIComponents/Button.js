@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './input.css';
-
 
 const Button = ({ type, label, onChange, ...props }) => {
 	return (
-		<button onClick={onChange} {...props}>
+		<button type={type} onClick={onChange} {...props}>
 			{label}
 		</button>
 	);
